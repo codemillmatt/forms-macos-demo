@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    x:Class="Forms4Mac.PlantedListPage"
+    Title="{Binding Title}">
+	<ContentPage.Content>
+        <ListView ItemsSource="{Binding Plants}" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Name, StringFormat='Plant Name: {0}'}" 
+                        Detail="{Binding Quantity, StringFormat='Number: {0}'}">
+                        <TextCell.ContextActions>
+                            <MenuItem Text="Died" IsDestructive="true" CommandParameter="{Binding .}" Clicked="Handle_Clicked" />
+                        </TextCell.ContextActions>
+                    </TextCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+	</ContentPage.Content>
+</ContentPage>
