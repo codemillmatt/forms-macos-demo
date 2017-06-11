@@ -6,10 +6,14 @@ namespace Forms4Mac
 {
     public class PlantedListViewModel : BaseViewModel
     {
-        public PlantedListViewModel()
+        INavigation nav;
+
+        public PlantedListViewModel(INavigation nav)
         {
             Title = "Alive Plants!!";
             this.Plants = new ObservableRangeCollection<Plant>(GardenCenter.GetPlanted());
+
+            this.nav = nav;
         }
 
         public ObservableRangeCollection<Plant> Plants { get; set; }
@@ -21,6 +25,18 @@ namespace Forms4Mac
             plantDied ?? (plantDied = new Command<Plant>((Plant pl) => { 
                 GardenCenter.ThePlantDied(pl);
                 this.Plants.Remove(pl);
+            }));
+        }
+
+        ICommand viewPlantDetail;
+        public ICommand ViewPlantDetailCommand
+        {
+            get =>
+            viewPlantDetail ?? (viewPlantDetail = new Command(async (obj) =>
+            {
+                var plant = obj as Plant;
+
+                await nav.PushAsync(new PlantDetailPage(plant));
             }));
         }
     }

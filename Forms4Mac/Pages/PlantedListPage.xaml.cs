@@ -20,7 +20,7 @@ namespace Forms4Mac
         {
             InitializeComponent();
 
-            vm = new PlantedListViewModel();
+            vm = new PlantedListViewModel(Navigation);
             BindingContext = vm;
         }
     }

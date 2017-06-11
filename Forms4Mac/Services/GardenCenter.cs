@@ -11,13 +11,13 @@ namespace Forms4Mac
         {
             if (!App.Current.Properties.ContainsKey("alive"))
             {
-                var seedlings = new List<Plant>() { new Plant { Name = "Tomato", Quantity = 1, WikipediaUrl = "" } };
+                var seedlings = new List<Plant>() { new Plant { Name = "Tomato", Quantity = 1, WikipediaUrl = "https://en.wikipedia.org/wiki/Tomato" } };
                 App.Current.Properties.Add("alive", JsonConvert.SerializeObject(seedlings));
             }
 
 			if (!App.Current.Properties.ContainsKey("dead"))
 			{
-				var seedlings = new List<Plant>() { new Plant { Name = "Eggplant", Quantity = 1, WikipediaUrl = "" } };
+				var seedlings = new List<Plant>() { new Plant { Name = "Eggplant", Quantity = 1, WikipediaUrl = "https://en.wikipedia.org/wiki/Eggplant" } };
 				App.Current.Properties.Add("dead", JsonConvert.SerializeObject(seedlings));
 			}
 
@@ -89,6 +89,8 @@ namespace Forms4Mac
 			var alivePlants = JsonConvert.DeserializeObject<List<Plant>>(aliveJson);
 
 			alivePlants.RemoveAll((arg) => arg.Name == plant.Name);
+
+            App.Current.Properties["alive"] = JsonConvert.SerializeObject(alivePlants);
         }
     }
 }
