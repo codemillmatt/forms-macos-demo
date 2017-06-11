@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Forms4Mac.PlantDetailPage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Forms4Mac.PlantDetailPage" 
+    Title="{Binding Name}">
 	<ContentPage.Content>
-        <StackLayout Orientation="Vertical">
-            <Label Text="{Binding Name}" HorizontalOptions="Center" />
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Text="{Binding Name}" HorizontalOptions="Center" TextColor="Red" />
 
-            <WebView x:Name="web" Source="{Binding WikipediaUrl}" WidthRequest="1000" HeightRequest="1000" />
-
-        </StackLayout>
+            <WebView Grid.Row="1" x:Name="web" Source="{Binding WikipediaUrl}" />
+        </Grid>
+        
 	</ContentPage.Content>
 </ContentPage>

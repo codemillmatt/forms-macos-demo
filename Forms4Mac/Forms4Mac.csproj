@@ -79,7 +79,6 @@
     <Compile Include="Pages\PlantDetailPage.xaml.cs">
       <DependentUpon>PlantDetailPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\PlantDetailViewModel.cs" />
     <Compile Include="Behaviors\ListviewSelectedItemBehavior.cs" />
   </ItemGroup>
   <ItemGroup>
